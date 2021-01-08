@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.beans.EventBean;
 
-@FeignClient(name="event-service")
+@FeignClient(name="evenement-service")
 public interface EventProxy {
 	
-	@GetMapping("events")
+	@GetMapping("evenements")
 	List<EventBean>getAllEvents();
 	
-	@GetMapping("events/{id}")
+	@GetMapping("evenements/{id}")
 	EventBean getEventById(@PathVariable("id") Long id);
 
 }
