@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -17,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.example.demo.beans.EventBean;
+import com.example.demo.beans.OutilBean;
 import com.example.demo.beans.PublicationBean;
 
 @Entity
@@ -42,6 +45,11 @@ public abstract class Membre implements Serializable {
 	private String password;
 	@Transient
 	private Collection<PublicationBean> publications;
+	@Transient
+	private List<EventBean>events;
+	
+	@Transient
+	private List<OutilBean> outils;
 
 	public Membre() {
 		super();
@@ -139,6 +147,22 @@ public abstract class Membre implements Serializable {
 
 	public void setPublications(Collection<PublicationBean> publications) {
 		this.publications = publications;
+	}
+
+	public List<EventBean> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<EventBean> events) {
+		this.events = events;
+	}
+
+	public List<OutilBean> getOutils() {
+		return outils;
+	}
+
+	public void setOutils(List<OutilBean> outils) {
+		this.outils = outils;
 	}
 
 }

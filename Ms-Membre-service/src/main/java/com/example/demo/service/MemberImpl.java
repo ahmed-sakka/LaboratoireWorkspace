@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.beans.EventBean;
+import com.example.demo.beans.OutilBean;
 import com.example.demo.beans.PublicationBean;
 import com.example.demo.dao.EnseignantChercheurRepository;
 import com.example.demo.dao.EtudiantRepository;
+import com.example.demo.dao.EventMemberRepository;
 import com.example.demo.dao.MemberRepository;
 import com.example.demo.dao.MembrePublicationRepository;
+import com.example.demo.dao.OutilMemebrRepository;
 import com.example.demo.entities.EnseignantChercheur;
 import com.example.demo.entities.Etudiant;
+import com.example.demo.entities.EventMember;
+import com.example.demo.entities.EventMemberId;
 import com.example.demo.entities.Membre;
 import com.example.demo.entities.Membre_Pub_Ids;
 import com.example.demo.entities.Membre_Publication;
+import com.example.demo.entities.OutilMember;
+import com.example.demo.entities.OutilMemberId;
+import com.example.demo.proxies.EventProxy;
+import com.example.demo.proxies.OutilProxy;
 import com.example.demo.proxies.PublicationProxy;
 
 @Service
@@ -30,6 +41,15 @@ public class MemberImpl implements IMemberService {
 	MembrePublicationRepository membrePublicationRepository;
 	@Autowired
 	PublicationProxy publicationProxy;
+	@Autowired
+	private EventMemberRepository eventmemberRepository;
+	@Autowired
+	private OutilMemebrRepository outilMemberRepository;
+	@Autowired
+	EventProxy eventProxy;
+	@Autowired
+	OutilProxy outilProxy;
+
 
 
 	public Membre addMember(Membre m) {
@@ -102,12 +122,58 @@ public class MemberImpl implements IMemberService {
 
 	@Override
 	public List<PublicationBean> findPublicationParAuteur(Long idauteur) {
-		List<PublicationBean> pubs = new ArrayList<PublicationBean>();
+		List<PublicationBean> pubs = new ArrayList<>();
 		List<Membre_Publication> idpubs = membrePublicationRepository.findpubId(idauteur);
 		idpubs.forEach(s -> {
 			System.out.println(s);
-			pubs.add(publicationProxy.recupererUnePublication(s.getId().getPublication_id()).getContent());
+			pubs.add(publicationProxy.recupererUnePublication(s.getId().getPublication_id()).
+					getContent());
 		});
 		return pubs;
 	}
+
+
+
+	
+
+	@Override
+	public void affecterEventToMember(Long idEvent, Long idMember) {
+
+		EventMemberId id = new EventMemberId(idEvent, idMember);
+		EventMember eventMmebr = new EventMember(id);
+		eventmemberRepository.save(eventMmebr);
+
+	}
+
+	@Override
+	public List<EventBean> findMemberEvents(Long idMember) {
+		List<EventMember> eventsMember = eventmemberRepository.findwithMemberId(idMember);
+		List<EventBean> events = new ArrayList<>();
+		eventsMember.forEach(e -> {
+			events.add(eventProxy.getEventById(e.getId().getEventId()));
+		});
+		return events;
+	}
+
+	@Override
+	public void affecterOutilToMember(Long idOutil, Long idMember) {
+		OutilMemberId id = new OutilMemberId(idOutil, idMember);
+		OutilMember outilMember =new OutilMember(id);
+		outilMemberRepository.save(outilMember);
+
+	}
+
+	@Override
+	public List<OutilBean> findMemberOutils(Long idMember) {
+		
+		List<OutilBean> outils = new ArrayList<OutilBean>();
+		List<OutilMember> memberOutils = outilMemberRepository.findoutilId(idMember);
+		memberOutils.forEach(outilMember -> {
+			outils.add(outilProxy.recupererUneOutil(outilMember.getId().getOutilId()));
+			
+		});
+		return outils;
+	}
+
+	
 }

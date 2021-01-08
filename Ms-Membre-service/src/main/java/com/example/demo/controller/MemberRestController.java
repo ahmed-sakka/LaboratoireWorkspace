@@ -107,8 +107,33 @@ public class MemberRestController {
 	@GetMapping("/fullmember/{id}")
 	public Membre findAFullMember(@PathVariable(name = "id") Long id) {
 		Membre mbr = memberService.findMember(id);
+		
+
 		mbr.setPublications(memberService.findPublicationParAuteur(id));
+		mbr.setEvents(memberService.findMemberEvents(id));
+		mbr.setOutils(memberService.findMemberOutils(id));
+
 		return mbr;
 	}
+	@GetMapping("/affecterEvent/{idEvent}/{idMem}")
+
+	public void affecterEvent(@PathVariable(name = "idEvent") Long idEvent,@PathVariable(name = "idMem") Long idMem)
+
+	{
+
+		memberService.affecterEventToMember(idEvent, idMem);
+
+	}
+	
+	@GetMapping("/affecterOutil/{idOutil}/{idMem}")
+
+	public void affecterOutil(@PathVariable(name = "idOutil") Long idOutil,@PathVariable(name = "idMem") Long idMem)
+
+	{
+
+		memberService.affecterOutilToMember(idMem, idOutil);
+
+	}
+	
 
 }

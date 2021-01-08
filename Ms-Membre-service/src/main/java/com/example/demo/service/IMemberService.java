@@ -2,6 +2,10 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import org.springframework.hateoas.EntityModel;
+
+import com.example.demo.beans.EventBean;
+import com.example.demo.beans.OutilBean;
 import com.example.demo.beans.PublicationBean;
 import com.example.demo.entities.EnseignantChercheur;
 import com.example.demo.entities.Etudiant;
@@ -42,4 +46,13 @@ public interface IMemberService {
 	public void affecterAuteurToPublication(Long idauteur, Long idpub);
 
 	public List<PublicationBean> findPublicationParAuteur(Long idauteur);
+	
+
+	 
+	 void affecterEventToMember(Long idEvent , Long idMember);
+	 List<EventBean> findMemberEvents(Long idMember);
+	 
+	 void affecterOutilToMember(Long idOutil , Long idMember);
+	 List<OutilBean> findMemberOutils(Long idMember);
+
 }
