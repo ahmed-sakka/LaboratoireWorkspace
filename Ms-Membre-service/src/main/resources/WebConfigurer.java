@@ -18,17 +18,17 @@ import javax.servlet.ServletException;
 @Configuration
 public class WebConfigurer  {
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**").allowedOrigins("*");
-//                registry.addMapping("/**").allowedMethods("*");
-//                registry.addMapping("/**").allowedHeaders("*");
-//            }
-//        };
-//    }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+           public void addCorsMappings(CorsRegistry registry) {
+	registry.addMapping("/**").allowedOrigins("*");
+               registry.addMapping("/**").allowedMethods("*");
+               registry.addMapping("/**").allowedHeaders("*");
+           }
+        };
+  }
 
 
     @Bean
@@ -37,6 +37,8 @@ public class WebConfigurer  {
         corsConfiguration.addAllowedOrigin(CorsConfiguration.ALL);
         corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
         corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+        
+        corsConfiguration.UseCors(CorsOptions.AllowAll);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);

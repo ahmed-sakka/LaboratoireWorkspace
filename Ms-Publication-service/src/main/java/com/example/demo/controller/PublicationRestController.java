@@ -20,7 +20,7 @@ import com.example.demo.entities.Publication;
 import com.example.demo.service.IPublicationService;
 
 @RestController
-@CrossOrigin
+
 public class PublicationRestController {
 
 	@Autowired

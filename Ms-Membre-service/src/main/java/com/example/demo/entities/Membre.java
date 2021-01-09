@@ -36,6 +36,8 @@ public abstract class Membre implements Serializable {
 	private String cin;
 	private String nom;
 	private String prenom;
+	private String adress;
+	private String phone;
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	@Lob
@@ -47,6 +49,7 @@ public abstract class Membre implements Serializable {
 	private Collection<PublicationBean> publications;
 	@Transient
 	private List<EventBean>events;
+	private String type;
 	
 	@Transient
 	private List<OutilBean> outils;
@@ -164,5 +167,30 @@ public abstract class Membre implements Serializable {
 	public void setOutils(List<OutilBean> outils) {
 		this.outils = outils;
 	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 
 }

@@ -20,7 +20,6 @@ import com.example.demo.entities.Outil;
 import com.example.demo.service.IOutilService;
 
 @RestController
-@CrossOrigin
 public class OutilRestController {
 
 	@Autowired

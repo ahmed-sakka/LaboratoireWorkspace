@@ -25,7 +25,7 @@ import com.example.demo.proxies.PublicationProxy;
 import com.example.demo.service.IMemberService;
 
 @RestController
-@CrossOrigin
+
 public class MemberRestController {
 	@Autowired
 	IMemberService memberService;
@@ -43,13 +43,13 @@ public class MemberRestController {
 		return memberService.findMember(id);
 	}
 
-	@GetMapping(value = "/membres/search/cin")
-	public Membre findOneMemberByCin(@RequestParam String cin) {
+	@GetMapping(value = "/membres/search/{cin}")
+	public Membre findOneMemberByCin(@PathVariable String cin) {
 		return memberService.findByCin(cin);
 	}
 
-	@GetMapping(value = "/membres/search/email")
-	public Membre findOneMemberByEmail(@RequestParam String email) {
+	@GetMapping(value = "/membres/searchEmail/{email}")
+	public Membre findOneMemberByEmail(@PathVariable String email) {
 		return memberService.findByEmail(email);
 	}
 

@@ -37,7 +37,7 @@ public class WebConfigurer  {
         corsConfiguration.addAllowedOrigin(CorsConfiguration.ALL);
         corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
         corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
-
+        app.UseCors(CorsOptions.AllowAll);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
 
