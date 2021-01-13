@@ -20,7 +20,7 @@ import com.example.demo.entities.Evenement;
 import com.example.demo.service.IEvenementService;
 
 @RestController
-
+@CrossOrigin("*")
 public class EvenementRestController {
 
 	@Autowired

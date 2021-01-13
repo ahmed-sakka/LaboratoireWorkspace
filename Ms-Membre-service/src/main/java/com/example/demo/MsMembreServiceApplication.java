@@ -32,20 +32,15 @@ public class MsMembreServiceApplication implements CommandLineRunner {
 	}
 
 	public void run(String... args) throws Exception {
-/*
-		memberService.addMember(new Etudiant());
-		memberService.addMember(new Etudiant());
-		memberService.addMember(new EnseignantChercheur());
-		memberService.addMember(new EnseignantChercheur());
-		// Update a Member
-		Membre m = memberService.findMember(1L);
+
+		if(memberService.findByEmail("etudiant1@gmail.com")==null)
+		{Membre m = new Etudiant();
 		m.setCv("cv1.pdf");
 		m.setCin("123");
-		m.setEmail("123@gmail.com");
-		memberService.updateMember(m);
-		memberService.affecterEncadrantToEtudiant(1L, 3L);
-		memberService.affecterEncadrantToEtudiant(2L, 3L);
-*/
+		m.setEmail("etudiant1@gmail.com");
+		memberService.addMember(m);
+		}
+
 		// Delete a Member
 		// memberService.deleteMember(2L);
 

@@ -14,5 +14,8 @@ import com.example.demo.entities.EventMemberId;
 public interface EventMemberRepository extends JpaRepository<EventMember, EventMemberId> {
 	@Query("select em from EventMember em where em.id.memberId=:id" )
 	List<EventMember> findwithMemberId(@Param("id")Long memberId);
+	
+	@Query("select em from EventMember em where em.id.eventId=:id" )
+	List<EventMember> findwithEventId(@Param("id")Long eventId);
 
 }

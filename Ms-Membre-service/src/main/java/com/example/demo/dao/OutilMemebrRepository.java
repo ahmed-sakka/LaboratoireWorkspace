@@ -12,6 +12,6 @@ import com.example.demo.entities.OutilMemberId;
 
 
 public interface OutilMemebrRepository extends JpaRepository<OutilMember, OutilMemberId> {
-	@Query("select o from OutilMember  o where o.id.memberId=:x")
+	@Query("select o from OutilMember  o where o.id.outilId=:x")
 	List<OutilMember> findoutilId(@Param ("x") Long autId); 
 }

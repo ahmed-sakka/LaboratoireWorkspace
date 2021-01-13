@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -173,6 +174,48 @@ public class MemberImpl implements IMemberService {
 			
 		});
 		return outils;
+	}
+
+	@Override
+	public List<Membre> findWithEventId(Long idevent) {
+		List<EventMember> eventsMember = eventmemberRepository.findwithEventId(idevent);
+		List<Membre> members =  new ArrayList<>();
+		eventsMember.forEach(em -> {
+			
+			members.add( memberRepository.findById(em.getId().getMemberId()).get());
+			
+			
+			
+		});
+		return members;
+	}
+
+	@Override
+	public List<Membre> findWithPublicationId(Long idPub) {
+		List<Membre_Publication> pubMember = membrePublicationRepository.findpubId(idPub);
+		List<Membre> members =  new ArrayList<>();
+		pubMember.forEach(em -> {
+			
+			members.add( memberRepository.findById(em.getId().getAuteur_id()).get());
+			
+			
+			
+		});
+		return members;
+	}
+
+	@Override
+	public List<Membre> findWithOutil(Long idOutil) {
+		List<OutilMember> outilMember = outilMemberRepository.findoutilId(idOutil);
+		List<Membre> members =  new ArrayList<>();
+		outilMember.forEach(em -> {
+			
+			members.add(memberRepository.findById(em.getId().getMemberId()).get());
+			
+			
+			
+		});
+		return members;
 	}
 
 	

@@ -25,7 +25,6 @@ import com.example.demo.proxies.PublicationProxy;
 import com.example.demo.service.IMemberService;
 
 @RestController
-
 public class MemberRestController {
 	@Autowired
 	IMemberService memberService;
@@ -87,24 +86,24 @@ public class MemberRestController {
 
 	}
 
-	@GetMapping("/publications")
+	@GetMapping("/membres/publications")
 	public CollectionModel<PublicationBean> listerpublication() {
 		return publicationProxy.listeDesPublications();
 
 	}
 
-	@GetMapping("/publications/{id}")
+	@GetMapping("/membres/publications/{id}")
 	public EntityModel<PublicationBean> listerunepublication(@PathVariable Long id) {
 		return publicationProxy.recupererUnePublication(id);
 
 	}
 
-	@GetMapping("/publications/auteur/{id}")
+	@GetMapping("/membres/publications/auteur/{id}")
 	public List<PublicationBean> listerpublicationbymembre(@PathVariable(name = "id") Long idaut) {
 		return memberService.findPublicationParAuteur(idaut);
 	}
 
-	@GetMapping("/fullmember/{id}")
+	@GetMapping("/membres/fullmember/{id}")
 	public Membre findAFullMember(@PathVariable(name = "id") Long id) {
 		Membre mbr = memberService.findMember(id);
 		
@@ -115,7 +114,7 @@ public class MemberRestController {
 
 		return mbr;
 	}
-	@GetMapping("/affecterEvent/{idEvent}/{idMem}")
+	@GetMapping("/membres/affecterEvent/{idEvent}/{idMem}")
 
 	public void affecterEvent(@PathVariable(name = "idEvent") Long idEvent,@PathVariable(name = "idMem") Long idMem)
 
@@ -125,7 +124,7 @@ public class MemberRestController {
 
 	}
 	
-	@GetMapping("/affecterOutil/{idOutil}/{idMem}")
+	@GetMapping("/membres/affecterOutil/{idOutil}/{idMem}")
 
 	public void affecterOutil(@PathVariable(name = "idOutil") Long idOutil,@PathVariable(name = "idMem") Long idMem)
 
@@ -135,5 +134,27 @@ public class MemberRestController {
 
 	}
 	
+	@GetMapping("/membres/findWithEventId/{eventId}")
+	public List<Membre>findWithEventId(@PathVariable(name="eventId") Long eventId){
+		
+		return memberService.findWithEventId(eventId);
+		
+		
+	}
+	@GetMapping("/membres/findWithPubId/{PubId}")
+	public List<Membre>findWithPubId(@PathVariable(name="PubId") Long PubId){
+		
+		return memberService.findWithPublicationId(PubId);
+		
+		
+	}
+	
+	@GetMapping("/membres/findWithoutilId/{outilId}")
+	public List<Membre>findWithoutilId(@PathVariable(name="outilId") Long outilId){
+		
+		return memberService.findWithOutil(outilId);
+		
+		
+	}
 
 }

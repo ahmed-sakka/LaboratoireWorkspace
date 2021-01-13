@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.springframework.hateoas.EntityModel;
@@ -54,5 +55,9 @@ public interface IMemberService {
 	 
 	 void affecterOutilToMember(Long idOutil , Long idMember);
 	 List<OutilBean> findMemberOutils(Long idMember);
+	 List<Membre> findWithEventId(Long idevent);
+	 List<Membre> findWithPublicationId(Long idPub);
+	 List<Membre> findWithOutil(Long idOutil);
+	 
 
 }
