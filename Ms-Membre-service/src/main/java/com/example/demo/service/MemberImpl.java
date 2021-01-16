@@ -218,5 +218,10 @@ public class MemberImpl implements IMemberService {
 		return members;
 	}
 
+	@Override
+	public List<EnseignantChercheur> findAllEnseignantChercheur() {
+		return enseignantChercheurRepository.findAll();
+	}
+
 	
 }

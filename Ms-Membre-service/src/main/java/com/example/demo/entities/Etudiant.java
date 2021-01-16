@@ -6,9 +6,13 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.example.demo.beans.PublicationBean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @DiscriminatorValue("etd")
@@ -17,11 +21,12 @@ public class Etudiant extends Membre {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Temporal(TemporalType.DATE)
+
 	private Date dateInscription;
 	private String diplome;
 
 	@ManyToOne
-	@JsonIgnore
 	private EnseignantChercheur encadrant;
 
 	public Etudiant() {
