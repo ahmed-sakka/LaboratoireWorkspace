@@ -251,8 +251,11 @@ public class MemberImpl implements IMemberService {
 
 	@Override
 	public void deleteAffectationEvent(Long eventId, Long idMember) {
-		EventMember  eventMembre = this.eventmemberRepository.findById(new EventMemberId(eventId, idMember)).get();
-		this.eventmemberRepository.delete(eventMembre);
+		
+		 this.eventmemberRepository.findById(new EventMemberId(eventId, idMember)).ifPresent(x ->{ 
+			 System.out.println("hello");
+			 this.eventmemberRepository.delete(x);});
+		
 	}
 		
 	public List<EnseignantChercheur> findAllEnseignantChercheur() {
