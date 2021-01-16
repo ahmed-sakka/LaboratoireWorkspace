@@ -56,6 +56,10 @@ public class MemberRestController {
 	public Membre addMembre(@RequestBody EnseignantChercheur m) {
 		return memberService.addMember(m);
 	}
+	@GetMapping(value = "/membres/enseignant")
+	public List<EnseignantChercheur> findAllEnseignantChercheur() {
+		return memberService.findAllEnseignantChercheur();
+	}
 
 	@PostMapping(value = "/membres/etudiant")
 	public Membre addMembre(@RequestBody Etudiant e) {
@@ -79,8 +83,8 @@ public class MemberRestController {
 		return memberService.updateMember(p);
 	}
 
-	@PutMapping(value = "/membres/etudiant")
-	public void affecterEncadrantToEtudiant(@RequestParam Long idetd, @RequestParam Long idens) {
+	@PutMapping(value = "/membres/etudiant/{idetd}/{idens}")
+	public void affecterEncadrantToEtudiant(@PathVariable Long idetd, @PathVariable Long idens) {
 
 		memberService.affecterEncadrantToEtudiant(idetd, idens);
 

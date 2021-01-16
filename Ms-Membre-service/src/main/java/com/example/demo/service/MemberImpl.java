@@ -253,7 +253,10 @@ public class MemberImpl implements IMemberService {
 	public void deleteAffectationEvent(Long eventId, Long idMember) {
 		EventMember  eventMembre = this.eventmemberRepository.findById(new EventMemberId(eventId, idMember)).get();
 		this.eventmemberRepository.delete(eventMembre);
+	}
 		
+	public List<EnseignantChercheur> findAllEnseignantChercheur() {
+		return enseignantChercheurRepository.findAll();
 	}
 
 	

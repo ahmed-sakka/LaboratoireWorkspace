@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.example.demo.beans.PublicationBean;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @DiscriminatorValue("ens")
@@ -21,8 +23,6 @@ public class EnseignantChercheur extends Membre {
 	private String grade;
 	private String etablissement;
 
-	@OneToMany(mappedBy="encadrant", fetch = FetchType.EAGER)
-	private List<Etudiant> etudiants;
 
 	public EnseignantChercheur() {
 		super();
@@ -30,11 +30,10 @@ public class EnseignantChercheur extends Membre {
 	}
 
 	public EnseignantChercheur(String cin, String nom, String prenom, Date dateNaissance, Byte[] photo, String cv,
-			String email, String password, String grade, String etablissement, List<Etudiant> etudiants, Collection<PublicationBean> publications) {
+			String email, String password, String grade, String etablissement, Collection<PublicationBean> publications) {
 		super(cin, nom, prenom, dateNaissance, photo, cv, email, password, publications);
 		this.grade = grade;
 		this.etablissement = etablissement;
-		this.etudiants = etudiants;
 	}
 
 	public String getGrade() {
@@ -53,12 +52,6 @@ public class EnseignantChercheur extends Membre {
 		this.etablissement = etablissement;
 	}
 
-	public List<Etudiant> getEtudiants() {
-		return etudiants;
-	}
-
-	public void setEtudiants(List<Etudiant> etudiants) {
-		this.etudiants = etudiants;
-	}
+	
 
 }
