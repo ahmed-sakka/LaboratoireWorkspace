@@ -123,6 +123,15 @@ public class MemberRestController {
 		memberService.affecterEventToMember(idEvent, idMem);
 
 	}
+	@GetMapping("/membres/affecterPublication/{idPub}/{idMem}")
+
+	public void affecterPublication(@PathVariable(name = "idPub") Long idpub,@PathVariable(name = "idMem") Long idMem)
+
+	{
+
+		memberService.affecterAuteurToPublication(idMem, idpub);
+
+	}
 	
 	@GetMapping("/membres/affecterOutil/{idOutil}/{idMem}")
 
@@ -130,7 +139,7 @@ public class MemberRestController {
 
 	{
 
-		memberService.affecterOutilToMember(idMem, idOutil);
+		memberService.affecterOutilToMember(idOutil,idMem );
 
 	}
 	
@@ -154,7 +163,44 @@ public class MemberRestController {
 		
 		return memberService.findWithOutil(outilId);
 		
+		}
+	@GetMapping("/membres/deleteOutilaffectation/{outilId}")
+	public void deleteAffectationOutil(@PathVariable(name="outilId") Long outilId){
+		 
+		 memberService.deleteAffectationOutil(outilId);
 		
-	}
-
+		}
+	
+	@GetMapping("/membres/deletepublicationaffectation/{pubId}")
+	public void deleteAffectationPublication(@PathVariable(name="pubId") Long pubId){
+		 
+		 memberService.deleteAffectationPublication(pubId);
+		
+		}
+	@GetMapping("/membres/deleteEventaffectation/{eventId}")
+	public void deleteAffectationEvent(@PathVariable(name="eventId") Long eventId){
+		 
+		 memberService.deleteAffectationEvent(eventId);
+		
+		}
+	@GetMapping("/membres/deleteOutilaffectation/{outilId}/{membreId}")
+	public void deleteAffectationOutil(@PathVariable(name="outilId") Long outilId,@PathVariable(name="membreId") Long membreId){
+		 
+		 memberService.deleteAffectationOutil(outilId,membreId);
+		
+		}
+	
+	@GetMapping("/membres/deletepublicationaffectation/{pubId}/{membreId}")
+	public void deleteAffectationPublication(@PathVariable(name="pubId") Long pubId,@PathVariable(name="membreId") Long membreId){
+		 
+		 memberService.deleteAffectationPublication(pubId,membreId);
+		
+		}
+	@GetMapping("/membres/deleteEventaffectation/{eventId}/{membreId}")
+	public void deleteAffectationEvent(@PathVariable(name="eventId") Long eventId,@PathVariable(name="membreId") Long membreId){
+		 
+		 memberService.deleteAffectationEvent(eventId,membreId);
+		
+		}
+	
 }
