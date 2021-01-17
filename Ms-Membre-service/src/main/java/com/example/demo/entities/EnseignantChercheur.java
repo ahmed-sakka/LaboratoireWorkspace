@@ -1,27 +1,26 @@
 package com.example.demo.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 
 import com.example.demo.beans.PublicationBean;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @DiscriminatorValue("ens")
-public class EnseignantChercheur extends Membre {
+public class EnseignantChercheur extends Membre implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String grade;
 	private String etablissement;
+	
+
+	
 
 
 	public EnseignantChercheur() {
@@ -51,6 +50,8 @@ public class EnseignantChercheur extends Membre {
 	public void setEtablissement(String etablissement) {
 		this.etablissement = etablissement;
 	}
+
+
 
 	
 

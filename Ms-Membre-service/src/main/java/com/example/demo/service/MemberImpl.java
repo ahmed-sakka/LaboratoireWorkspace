@@ -263,5 +263,11 @@ public class MemberImpl implements IMemberService {
 		return enseignantChercheurRepository.findAll();
 	}
 
+	@Override
+	public List<Etudiant> findEnsStudent(Long id) {
+	
+		return this.etudiantRepository.findByEncadrantId(id);
+	}
+
 	
 }

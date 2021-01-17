@@ -67,5 +67,7 @@ public interface IMemberService {
 	 void deleteAffectationPublication(Long publicationId,Long idMember);
 	 void deleteAffectationEvent(Long eventId,Long idMember);
 	 
+	 List<Etudiant>findEnsStudent(Long id);
+	 
 
 }

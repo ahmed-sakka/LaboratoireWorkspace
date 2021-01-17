@@ -11,6 +11,8 @@ import javax.persistence.TemporalType;
 
 import com.example.demo.beans.PublicationBean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -25,7 +27,7 @@ public class Etudiant extends Membre {
 
 	private Date dateInscription;
 	private String diplome;
-
+	
 	@ManyToOne
 	private EnseignantChercheur encadrant;
 

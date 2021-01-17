@@ -11,4 +11,5 @@ import com.example.demo.entities.Etudiant;
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 	List<Etudiant> findByDiplome(String diplome);
 	List<Etudiant> findByDiplomeOrderByDateInscriptionDesc(String diplome);
+	List<Etudiant>findByEncadrantId(Long id);
 }

@@ -214,4 +214,10 @@ public class MemberRestController {
 		
 		}
 	
+	@GetMapping("/membres/getEncadreStudent/{id}")
+	public List<Etudiant>findByEnccadrant(@PathVariable("id")Long id){
+		
+		return memberService.findEnsStudent(id);
+	}
+	
 }
