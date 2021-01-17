@@ -1,6 +1,10 @@
 package com.example.demo.entities;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+
+import com.example.demo.beans.OutilBean;
 
 
 
@@ -8,7 +12,7 @@ import javax.persistence.Entity;
 public class OutilMember {
 	@EmbeddedId
 	private OutilMemberId id;
-
+	
 	public OutilMember(OutilMemberId id) {
 		super();
 		this.id = id;
@@ -25,6 +29,10 @@ public class OutilMember {
 	public void setId(OutilMemberId id) {
 		this.id = id;
 	}
+
+
+	
+	
 
 	
 }

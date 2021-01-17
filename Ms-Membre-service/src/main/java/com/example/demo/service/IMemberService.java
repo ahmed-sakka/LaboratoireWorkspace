@@ -59,6 +59,13 @@ public interface IMemberService {
 	 List<Membre> findWithEventId(Long idevent);
 	 List<Membre> findWithPublicationId(Long idPub);
 	 List<Membre> findWithOutil(Long idOutil);
+	 void deleteAffectationOutil(Long outilId);
+	 void deleteAffectationPublication(Long publicationId);
+	 void deleteAffectationEvent(Long eventId);
+	 
+	 void deleteAffectationOutil(Long outilId, Long idMember);
+	 void deleteAffectationPublication(Long publicationId,Long idMember);
+	 void deleteAffectationEvent(Long eventId,Long idMember);
 	 
 
 }

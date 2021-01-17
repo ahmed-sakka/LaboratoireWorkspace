@@ -1,11 +1,9 @@
 package com.example.demo.service;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.beans.EventBean;
@@ -164,7 +162,7 @@ public class MemberImpl implements IMemberService {
 
 	}
 
-	@Override
+	@Override 
 	public List<OutilBean> findMemberOutils(Long idMember) {
 		
 		List<OutilBean> outils = new ArrayList<OutilBean>();
@@ -219,6 +217,47 @@ public class MemberImpl implements IMemberService {
 	}
 
 	@Override
+	public void deleteAffectationOutil(Long outilId) {
+		this.outilMemberRepository.deleteByIdOutilId(outilId);
+		
+	}
+
+	@Override
+	public void deleteAffectationPublication(Long publicationId) {
+	//	this.membrePublicationRepository.deleteByIdId(publicationId);
+		
+	}
+
+	@Override
+	public void deleteAffectationEvent(Long eventId) {
+		this.eventmemberRepository.deleteByIdEventId(eventId);
+		
+	}
+
+	@Override
+	public void deleteAffectationOutil(Long outilId, Long idMember) {
+		OutilMember outilMember = this.outilMemberRepository.findById(new OutilMemberId(outilId, idMember)).get();
+		 outilMemberRepository.delete(outilMember);
+		
+	}
+
+	@Override
+	public void deleteAffectationPublication(Long publicationId, Long idMember) {
+		Membre_Publication membrePublication = membrePublicationRepository.findById(new Membre_Pub_Ids(publicationId, idMember)).get();	
+		this.membrePublicationRepository.delete(membrePublication);
+			
+		
+	}
+
+	@Override
+	public void deleteAffectationEvent(Long eventId, Long idMember) {
+		
+		 this.eventmemberRepository.findById(new EventMemberId(eventId, idMember)).ifPresent(x ->{ 
+			 System.out.println("hello");
+			 this.eventmemberRepository.delete(x);});
+		
+	}
+		
 	public List<EnseignantChercheur> findAllEnseignantChercheur() {
 		return enseignantChercheurRepository.findAll();
 	}

@@ -60,7 +60,7 @@ public class MemberRestController {
 	public List<EnseignantChercheur> findAllEnseignantChercheur() {
 		return memberService.findAllEnseignantChercheur();
 	}
-
+	
 	@PostMapping(value = "/membres/etudiant")
 	public Membre addMembre(@RequestBody Etudiant e) {
 		return memberService.addMember(e);
@@ -83,8 +83,8 @@ public class MemberRestController {
 		return memberService.updateMember(p);
 	}
 
-	@PutMapping(value = "/membres/etudiant/{idetd}/{idens}")
-	public void affecterEncadrantToEtudiant(@PathVariable Long idetd, @PathVariable Long idens) {
+	@PutMapping(value = "/membres/etudiant")
+	public void affecterEncadrantToEtudiant(@RequestParam Long idetd, @RequestParam Long idens) {
 
 		memberService.affecterEncadrantToEtudiant(idetd, idens);
 
@@ -127,6 +127,15 @@ public class MemberRestController {
 		memberService.affecterEventToMember(idEvent, idMem);
 
 	}
+	@GetMapping("/membres/affecterPublication/{idPub}/{idMem}")
+
+	public void affecterPublication(@PathVariable(name = "idPub") Long idpub,@PathVariable(name = "idMem") Long idMem)
+
+	{
+
+		memberService.affecterAuteurToPublication(idMem, idpub);
+
+	}
 	
 	@GetMapping("/membres/affecterOutil/{idOutil}/{idMem}")
 
@@ -134,7 +143,7 @@ public class MemberRestController {
 
 	{
 
-		memberService.affecterOutilToMember(idMem, idOutil);
+		memberService.affecterOutilToMember(idOutil,idMem );
 
 	}
 	
@@ -158,7 +167,44 @@ public class MemberRestController {
 		
 		return memberService.findWithOutil(outilId);
 		
+		}
+	@GetMapping("/membres/deleteOutilaffectation/{outilId}")
+	public void deleteAffectationOutil(@PathVariable(name="outilId") Long outilId){
+		 
+		 memberService.deleteAffectationOutil(outilId);
 		
-	}
-
+		}
+	
+	@GetMapping("/membres/deletepublicationaffectation/{pubId}")
+	public void deleteAffectationPublication(@PathVariable(name="pubId") Long pubId){
+		 
+		 memberService.deleteAffectationPublication(pubId);
+		
+		}
+	@GetMapping("/membres/deleteEventaffectation/{eventId}")
+	public void deleteAffectationEvent(@PathVariable(name="eventId") Long eventId){
+		 
+		 memberService.deleteAffectationEvent(eventId);
+		
+		}
+	@DeleteMapping("/membres/deleteOutilaffectation/{outilId}/{membreId}")
+	public void deleteAffectationOutil(@PathVariable(name="outilId") Long outilId,@PathVariable(name="membreId") Long membreId){
+		 
+		 memberService.deleteAffectationOutil(outilId,membreId);
+		
+		}
+	
+	@DeleteMapping("/membres/deletepublicationaffectation/{pubId}/{membreId}")
+	public void deleteAffectationPublication(@PathVariable(name="pubId") Long pubId,@PathVariable(name="membreId") Long membreId){
+		 
+		 memberService.deleteAffectationPublication(pubId,membreId);
+		
+		}
+	@DeleteMapping("/membres/deleteEventaffectation/{eventId}/{membreId}")
+	public void deleteAffectationEvent(@PathVariable(name="eventId") Long eventId,@PathVariable(name="membreId") Long membreId){
+		 
+		 memberService.deleteAffectationEvent(eventId,membreId);
+		
+		}
+	
 }
