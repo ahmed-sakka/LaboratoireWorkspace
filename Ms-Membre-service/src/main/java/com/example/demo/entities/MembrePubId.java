@@ -5,31 +5,31 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Membre_Pub_Ids implements Serializable {
+public class MembrePubId implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long publication_id;
+	private Long publicationId;
 	private Long auteur_id;
 
-	public Membre_Pub_Ids() {
+	public MembrePubId() {
 		super();
 	}
 
-	public Membre_Pub_Ids(Long publication_id, Long auteur_id) {
+	public MembrePubId(Long publication_id, Long auteur_id) {
 		super();
-		this.publication_id = publication_id;
+		this.publicationId = publication_id;
 		this.auteur_id = auteur_id;
 	}
 
 	public Long getPublication_id() {
-		return publication_id;
+		return publicationId;
 	}
 
 	public void setPublication_id(Long publication_id) {
-		this.publication_id = publication_id;
+		this.publicationId = publication_id;
 	}
 
 	public Long getAuteur_id() {
@@ -45,7 +45,7 @@ public class Membre_Pub_Ids implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((auteur_id == null) ? 0 : auteur_id.hashCode());
-		result = prime * result + ((publication_id == null) ? 0 : publication_id.hashCode());
+		result = prime * result + ((publicationId == null) ? 0 : publicationId.hashCode());
 		return result;
 	}
 
@@ -57,16 +57,16 @@ public class Membre_Pub_Ids implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Membre_Pub_Ids other = (Membre_Pub_Ids) obj;
+		MembrePubId other = (MembrePubId) obj;
 		if (auteur_id == null) {
 			if (other.auteur_id != null)
 				return false;
 		} else if (!auteur_id.equals(other.auteur_id))
 			return false;
-		if (publication_id == null) {
-			if (other.publication_id != null)
+		if (publicationId == null) {
+			if (other.publicationId != null)
 				return false;
-		} else if (!publication_id.equals(other.publication_id))
+		} else if (!publicationId.equals(other.publicationId))
 			return false;
 		return true;
 	}

@@ -20,7 +20,7 @@ import com.example.demo.entities.Etudiant;
 import com.example.demo.entities.EventMember;
 import com.example.demo.entities.EventMemberId;
 import com.example.demo.entities.Membre;
-import com.example.demo.entities.Membre_Pub_Ids;
+import com.example.demo.entities.MembrePubId;
 import com.example.demo.entities.Membre_Publication;
 import com.example.demo.entities.OutilMember;
 import com.example.demo.entities.OutilMemberId;
@@ -115,14 +115,14 @@ public class MemberImpl implements IMemberService {
 		Membre mbr = memberRepository.findById(idauteur).get();
 		Membre_Publication mbs = new Membre_Publication();
 		mbs.setAuteur(mbr);
-		mbs.setId(new Membre_Pub_Ids(idpub, idauteur));
+		mbs.setId(new MembrePubId(idpub, idauteur));
 		membrePublicationRepository.save(mbs);
 	}
 
 	@Override
 	public List<PublicationBean> findPublicationParAuteur(Long idauteur) {
 		List<PublicationBean> pubs = new ArrayList<>();
-		List<Membre_Publication> idpubs = membrePublicationRepository.findpubId(idauteur);
+		List<Membre_Publication> idpubs = membrePublicationRepository.findWithAutheurId(idauteur);
 		idpubs.forEach(s -> {
 			System.out.println(s);
 			pubs.add(publicationProxy.recupererUnePublication(s.getId().getPublication_id()).
@@ -166,7 +166,7 @@ public class MemberImpl implements IMemberService {
 	public List<OutilBean> findMemberOutils(Long idMember) {
 		
 		List<OutilBean> outils = new ArrayList<OutilBean>();
-		List<OutilMember> memberOutils = outilMemberRepository.findoutilId(idMember);
+		List<OutilMember> memberOutils = outilMemberRepository.findWithMemberId(idMember);
 		memberOutils.forEach(outilMember -> {
 			outils.add(outilProxy.recupererUneOutil(outilMember.getId().getOutilId()));
 			
@@ -224,7 +224,7 @@ public class MemberImpl implements IMemberService {
 
 	@Override
 	public void deleteAffectationPublication(Long publicationId) {
-	//	this.membrePublicationRepository.deleteByIdId(publicationId);
+		this.membrePublicationRepository.deleteByIdPublicationId(publicationId);
 		
 	}
 
@@ -237,13 +237,14 @@ public class MemberImpl implements IMemberService {
 	@Override
 	public void deleteAffectationOutil(Long outilId, Long idMember) {
 		OutilMember outilMember = this.outilMemberRepository.findById(new OutilMemberId(outilId, idMember)).get();
+		
 		 outilMemberRepository.delete(outilMember);
 		
 	}
 
 	@Override
 	public void deleteAffectationPublication(Long publicationId, Long idMember) {
-		Membre_Publication membrePublication = membrePublicationRepository.findById(new Membre_Pub_Ids(publicationId, idMember)).get();	
+		Membre_Publication membrePublication = membrePublicationRepository.findById(new MembrePubId(publicationId, idMember)).get();	
 		this.membrePublicationRepository.delete(membrePublication);
 			
 		

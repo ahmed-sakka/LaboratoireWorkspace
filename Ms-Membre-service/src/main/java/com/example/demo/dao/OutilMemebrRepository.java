@@ -17,5 +17,8 @@ public interface OutilMemebrRepository extends JpaRepository<OutilMember, OutilM
 	@Query("select o from OutilMember  o where o.id.outilId=:x")
 	List<OutilMember> findoutilId(@Param ("x") Long autId); 
 	
+	@Query("select o from OutilMember  o where o.id.memberId=:x")
+	List<OutilMember> findWithMemberId(@Param ("x") Long memberId); 
+	
 	void deleteByIdOutilId(Long outilId);
 }

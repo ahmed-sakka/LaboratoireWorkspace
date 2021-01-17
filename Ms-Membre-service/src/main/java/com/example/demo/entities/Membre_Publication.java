@@ -9,7 +9,7 @@ import javax.persistence.MapsId;
 public class Membre_Publication {
 
 	@EmbeddedId
-	private Membre_Pub_Ids id;
+	private MembrePubId id;
 	@ManyToOne
 	@MapsId("auteur_id")
 	private Membre auteur;
@@ -18,17 +18,17 @@ public class Membre_Publication {
 		super();
 	}
 
-	public Membre_Publication(Membre_Pub_Ids id, Membre auteur) {
+	public Membre_Publication(MembrePubId id, Membre auteur) {
 		super();
 		this.id = id;
 		this.auteur = auteur;
 	}
 
-	public Membre_Pub_Ids getId() {
+	public MembrePubId getId() {
 		return id;
 	}
 
-	public void setId(Membre_Pub_Ids id) {
+	public void setId(MembrePubId id) {
 		this.id = id;
 	}
 

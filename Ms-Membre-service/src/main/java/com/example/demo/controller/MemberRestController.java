@@ -30,7 +30,10 @@ public class MemberRestController {
 	IMemberService memberService;
 	@Autowired
 	PublicationProxy publicationProxy;
+	
+	
 
+	
 
 	@RequestMapping(value = "/membres", method = RequestMethod.GET)
 	public List<Membre> findMembres() {
@@ -68,6 +71,10 @@ public class MemberRestController {
 
 	@DeleteMapping(value = "/membres/{id}")
 	public void deleteMembre(@PathVariable Long id) {
+		
+		memberService.findMemberEvents(id).forEach(event -> memberService.deleteAffectationEvent(event.getId(),id));
+		memberService.findMemberOutils(id).forEach(outil -> memberService.deleteAffectationOutil(outil.getId(), id));
+		memberService.findPublicationParAuteur(id).forEach(pub -> memberService.deleteAffectationPublication(pub.getId(), id));
 		memberService.deleteMember(id);
 	}
 

@@ -49,7 +49,7 @@ public class AuthRestAPIs {
   AuthenticationManager authenticationManager;
  
   @Autowired
-  UserService userService;
+  UserService userService; 
   @Autowired
   RoleRepository roleRepository;
   @Autowired
@@ -97,18 +97,16 @@ public class AuthRestAPIs {
         encoder.encode(signUpRequest.getPassword()));
  
     Set<Role> roles = new HashSet<>();
-    Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN);
 
-    roles.add(adminRole);
-    /*
-      switch (signUpRequest.getRoles()) {
+    
+      switch (signUpRequest.getRoles().iterator().next().getId().intValue()) {
       case 1:
         Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN);
         System.out.println(adminRole);
             if(adminRole ==null)
             	throw  new RuntimeException("Fail! -> Cause: User Role not find.");
         
- 
+            roles.add(adminRole);
         break;
       case 2:
         Role pmRole = roleRepository.findByName(RoleName.ROLE_USER);
@@ -125,7 +123,7 @@ public class AuthRestAPIs {
         throw new RuntimeException("Fail! -> Cause: User Role not find.");
         roles.add(userRole);
       }
- */
+ 
     user.setRoles(roles);
     userService.save(user);
  
