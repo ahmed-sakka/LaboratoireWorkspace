@@ -41,7 +41,7 @@ public abstract class Membre implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	@Lob
-	private Byte[] photo;
+	private String photo;
 	private String cv;
 	private String email;
 	private String password;
@@ -58,7 +58,7 @@ public abstract class Membre implements Serializable {
 		super();
 	}
 
-	public Membre(String cin, String nom, String prenom, Date dateNaissance, Byte[] photo, String cv, String email,
+	public Membre(String cin, String nom, String prenom, Date dateNaissance, String photo, String cv, String email,
 			String password, Collection<PublicationBean> publications) {
 		super();
 		this.cin = cin;
@@ -112,11 +112,11 @@ public abstract class Membre implements Serializable {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public Byte[] getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Byte[] photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

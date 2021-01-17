@@ -34,7 +34,7 @@ public class Etudiant extends Membre {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Etudiant(String cin, String nom, String prenom, Date dateNaissance, Byte[] photo, String cv, String email,
+	public Etudiant(String cin, String nom, String prenom, Date dateNaissance, String photo, String cv, String email,
 			String password, Date dateInscription, String diplome, EnseignantChercheur encadrant, Collection<PublicationBean> publications) {
 		super(cin, nom, prenom, dateNaissance, photo, cv, email, password, publications);
 		this.dateInscription = dateInscription;

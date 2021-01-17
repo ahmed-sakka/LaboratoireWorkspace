@@ -29,7 +29,7 @@ public class EnseignantChercheur extends Membre {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EnseignantChercheur(String cin, String nom, String prenom, Date dateNaissance, Byte[] photo, String cv,
+	public EnseignantChercheur(String cin, String nom, String prenom, Date dateNaissance, String photo, String cv,
 			String email, String password, String grade, String etablissement, Collection<PublicationBean> publications) {
 		super(cin, nom, prenom, dateNaissance, photo, cv, email, password, publications);
 		this.grade = grade;
