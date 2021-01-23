@@ -90,12 +90,12 @@ public class MemberRestController {
 		return memberService.updateMember(p);
 	}
 
-	@PutMapping(value = "/membres/etudiant")
-	public void affecterEncadrantToEtudiant(@RequestParam Long idetd, @RequestParam Long idens) {
+	@PutMapping(value = "/membres/etudiant/{idetd}/{idens}")
+    public void affecterEncadrantToEtudiant(@PathVariable Long idetd, @PathVariable Long idens) {
 
-		memberService.affecterEncadrantToEtudiant(idetd, idens);
+        memberService.affecterEncadrantToEtudiant(idetd, idens);
 
-	}
+    }
 
 	@GetMapping("/membres/publications")
 	public CollectionModel<PublicationBean> listerpublication() {
